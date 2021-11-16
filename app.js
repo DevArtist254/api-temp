@@ -1,4 +1,5 @@
 const express = require("express")
+const path = require("path")
 const dotenv = require("dotenv")
 dotenv.config({path: `./config.env`})
 const connectDB = require("./config/db")
@@ -24,8 +25,8 @@ const recipyRoute = require("./routes/recipyRoute")
 //user route
 app.use("/cookbook/recipy", recipyRoute)
 
-app.get("/", (req, res) => {
-  res.sendFile(`${__dirname}/client/public/index.html`)
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
 })
 
 app.listen(process.env.PORT, () => {
