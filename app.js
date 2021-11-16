@@ -8,12 +8,25 @@ const cors = require("cors")
 const app = express()
 
 //1.01
-app.use(express.static("public"))
+//set json script in the body
+app.use(express.json({limit: "10kb"}))
 
 app.use(cors())
 
 //Connect Database
 connectDB()
+
+app.use(express.static(`${__dirname}/client/public`))
+
+//set the CRUD main route
+const recipyRoute = require("./routes/recipyRoute")
+
+//user route
+app.use("/cookbook/recipy", recipyRoute)
+
+app.get("/", (req, res) => {
+  res.sendFile(`${__dirname}/client/public/index.html`)
+})
 
 app.listen(process.env.PORT, () => {
   console.log(`DevArtist Server is runing on port ${process.env.PORT}`)

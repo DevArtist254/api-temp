@@ -4,10 +4,8 @@ const recipySchema = mongoose.Schema({
   fullname: {
     type: String,
     minLength: 5,
-    maxLength: 100
-  }
-}, {
-  timestamp: true
+    maxLength: 100,
+  },
 })
 
 const Recipy = mongoose.model("Recipy", recipySchema)
