@@ -17,7 +17,7 @@ app.use(cors())
 //Connect Database
 connectDB()
 
-app.use("/", express.static(`${__dirname}/client/public`))
+app.use(express.static(path.join(__dirname, "client", "public")))
 
 //set the CRUD main route
 const recipyRoute = require("./routes/recipyRoute")
